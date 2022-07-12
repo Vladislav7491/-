@@ -1,0 +1,102 @@
+<html>
+<head>
+<title>Character.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6897bb;}
+.s3 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Character.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.company</span><span class="s0">;</span>
+
+<span class="s0">public abstract class </span><span class="s1">Character </span><span class="s0">implements </span><span class="s1">Fighter {</span>
+    <span class="s0">private </span><span class="s1">String name</span><span class="s0">;</span>
+    <span class="s0">private int </span><span class="s1">healthPoints</span><span class="s0">;</span>
+    <span class="s0">private int </span><span class="s1">strength</span><span class="s0">;</span>
+    <span class="s0">private int </span><span class="s1">dexterity</span><span class="s0">;</span>
+    <span class="s0">private int </span><span class="s1">xp</span><span class="s0">;</span>
+    <span class="s0">private int </span><span class="s1">gold</span><span class="s0">;</span>
+
+    <span class="s0">public </span><span class="s1">Character (String name</span><span class="s0">, int </span><span class="s1">healthPoints</span><span class="s0">, int </span><span class="s1">strength</span><span class="s0">, int </span><span class="s1">dexterity</span><span class="s0">, int </span><span class="s1">xp</span><span class="s0">, int </span><span class="s1">gold){</span>
+            <span class="s0">this</span><span class="s1">.name = name</span><span class="s0">;</span>
+            <span class="s0">this</span><span class="s1">.healthPoints = healthPoints</span><span class="s0">;</span>
+            <span class="s0">this</span><span class="s1">.strength = strength</span><span class="s0">;</span>
+            <span class="s0">this</span><span class="s1">.dexterity = dexterity</span><span class="s0">;</span>
+            <span class="s0">this</span><span class="s1">.xp = xp</span><span class="s0">;</span>
+            <span class="s0">this</span><span class="s1">.gold = gold</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public int </span><span class="s1">attack(){</span>
+        <span class="s0">if </span><span class="s1">(dexterity * </span><span class="s2">3 </span><span class="s1">&gt; getRandomValue()) </span><span class="s0">return </span><span class="s1">strength</span><span class="s0">;</span>
+        <span class="s0">else return </span><span class="s2">0</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public </span><span class="s1">String getName() {</span>
+        <span class="s0">return </span><span class="s1">name</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">setName(String name) {</span>
+        <span class="s0">this</span><span class="s1">.name = name</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public int </span><span class="s1">getHealthPoints() {</span>
+        <span class="s0">return </span><span class="s1">healthPoints</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">setHealthPoints(</span><span class="s0">int </span><span class="s1">healthPoints) {</span>
+        <span class="s0">this</span><span class="s1">.healthPoints = healthPoints</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public int </span><span class="s1">getStrength() {</span>
+        <span class="s0">return </span><span class="s1">strength</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">setStrength(</span><span class="s0">int </span><span class="s1">strength) {</span>
+        <span class="s0">this</span><span class="s1">.strength = strength</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public int </span><span class="s1">getDexterity() {</span>
+        <span class="s0">return </span><span class="s1">dexterity</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">setDexterity(</span><span class="s0">int </span><span class="s1">dexterity) {</span>
+        <span class="s0">this</span><span class="s1">.dexterity = dexterity</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public int </span><span class="s1">getXp() {</span>
+        <span class="s0">return </span><span class="s1">xp</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">setXp(</span><span class="s0">int </span><span class="s1">xp) {</span>
+        <span class="s0">this</span><span class="s1">.xp = xp</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public int </span><span class="s1">getGold() {</span>
+        <span class="s0">return </span><span class="s1">gold</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">setGold(</span><span class="s0">int </span><span class="s1">gold) {</span>
+        <span class="s0">this</span><span class="s1">.gold = gold</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">private int </span><span class="s1">getRandomValue(){</span>
+        <span class="s0">return </span><span class="s1">(</span><span class="s0">int</span><span class="s1">) (Math.random() * </span><span class="s2">100</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public </span><span class="s1">String toString(){</span>
+        <span class="s0">return </span><span class="s1">String.format(</span><span class="s3">&quot;%s Здоровье:%d&quot;</span><span class="s0">, </span><span class="s1">name</span><span class="s0">, </span><span class="s1">healthPoints)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>

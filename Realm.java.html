@@ -1,0 +1,139 @@
+<html>
+<head>
+<title>Realm.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+.s4 { color: #808080;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Realm.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.company</span><span class="s0">;</span>
+
+
+<span class="s0">import </span><span class="s1">java.io.BufferedReader</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.io.IOException</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.io.InputStreamReader</span><span class="s0">;</span>
+
+<span class="s0">public class </span><span class="s1">Realm {</span>
+
+    <span class="s0">private static </span><span class="s1">BufferedReader br</span><span class="s0">;</span>
+
+    <span class="s0">private static </span><span class="s1">Character player = </span><span class="s0">null;</span>
+
+    <span class="s0">private static </span><span class="s1">Battle battle = </span><span class="s0">null;</span>
+
+
+<span class="s0">public static void </span><span class="s1">main(String[] args){</span>
+<span class="s1">br = </span><span class="s0">new </span><span class="s1">BufferedReader(</span><span class="s0">new </span><span class="s1">InputStreamReader(System.in))</span><span class="s0">;</span>
+<span class="s1">battle = </span><span class="s0">new </span><span class="s1">Battle()</span><span class="s0">;</span>
+    <span class="s1">System.out.println(</span><span class="s2">&quot;Введите имя персонажа: &quot;</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s0">try </span><span class="s1">{</span>
+        <span class="s1">command(br.readLine())</span><span class="s0">;</span>
+    <span class="s1">} </span><span class="s0">catch </span><span class="s1">(IOException e){</span>
+        <span class="s1">e.printStackTrace()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s1">}</span>
+    <span class="s0">private static void  </span><span class="s1">command(String string) </span><span class="s0">throws </span><span class="s1">IOException {</span>
+    <span class="s0">if </span><span class="s1">(player == </span><span class="s0">null</span><span class="s1">) {</span>
+        <span class="s1">player = </span><span class="s0">new </span><span class="s1">Hero(</span>
+                <span class="s1">string</span><span class="s0">,</span>
+                <span class="s3">100</span><span class="s0">,</span>
+                <span class="s3">20</span><span class="s0">,</span>
+                <span class="s3">20</span><span class="s0">,</span>
+                <span class="s3">0</span><span class="s0">,</span>
+                <span class="s3">0</span>
+        <span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">System.out.println(String.format(</span><span class="s2">&quot;Спасти наш мир от драконов вызвался %s! Да прибудет с ним сила!&quot;</span><span class="s0">, </span><span class="s1">player.getName()))</span><span class="s0">;</span>
+        <span class="s1">printNavigation()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s0">switch </span><span class="s1">(string){</span>
+        <span class="s0">case </span><span class="s2">&quot;1&quot;</span><span class="s1">: {</span>
+            <span class="s1">System.out.println(</span><span class="s2">&quot;Торговец&quot;</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">command(br.readLine())</span><span class="s0">;</span>
+        <span class="s1">}</span>
+        <span class="s0">break;</span>
+        <span class="s0">case </span><span class="s2">&quot;2&quot;</span><span class="s1">:{</span>
+            <span class="s1">commitFight()</span><span class="s0">;</span>
+        <span class="s1">}</span>
+        <span class="s0">break;</span>
+        <span class="s0">case </span><span class="s2">&quot;3&quot;</span><span class="s1">:</span>
+            <span class="s1">System.exit(</span><span class="s3">1</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s0">break;</span>
+        <span class="s0">case </span><span class="s2">&quot;да&quot;</span><span class="s1">:</span>
+            <span class="s1">command(</span><span class="s2">&quot;2&quot;</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s0">break;</span>
+        <span class="s0">case </span><span class="s2">&quot;нет&quot;</span><span class="s1">:</span>
+        <span class="s1">{</span>
+            <span class="s1">printNavigation()</span><span class="s0">;</span>
+            <span class="s1">command(br.readLine())</span><span class="s0">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+        <span class="s1">command(br.readLine())</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s0">private static void </span><span class="s1">commitFight() {</span>
+        <span class="s1">battle.fight(player</span><span class="s0">, </span><span class="s1">createMonster()</span><span class="s0">, new </span><span class="s1">FightCallback() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">fightWin() {</span>
+                <span class="s1">System.out.println(String.format(</span><span class="s2">&quot;%s победил! Теперь у вас %d опыта и %d золота, а также осталось %d едениц здоровья.&quot;</span><span class="s0">, </span><span class="s1">player.getName()</span><span class="s0">, </span><span class="s1">player.getXp()</span><span class="s0">, </span><span class="s1">player.getGold()</span><span class="s0">, </span><span class="s1">player.getHealthPoints()))</span><span class="s0">;</span>
+                <span class="s1">System.out.println(</span><span class="s2">&quot;Желаете продолжить поход или вернуться в город? (да/нет)&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                <span class="s0">try </span><span class="s1">{</span>
+                    <span class="s1">command(br.readLine())</span><span class="s0">;</span>
+                <span class="s1">} </span><span class="s0">catch </span><span class="s1">(IOException e) {</span>
+                    <span class="s1">e.printStackTrace()</span><span class="s0">;</span>
+                <span class="s1">}</span>
+            <span class="s1">}</span>
+
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">fightLost() {</span>
+
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s0">private static </span><span class="s1">Character createMonster() {</span>
+        <span class="s4">//Рандомайзер</span>
+        <span class="s0">int </span><span class="s1">random = (</span><span class="s0">int</span><span class="s1">) (Math.random() * </span><span class="s3">10</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s4">//С вероятностью 50% создается или скелет, или гоблин</span>
+        <span class="s0">if </span><span class="s1">(random % </span><span class="s3">2 </span><span class="s1">== </span><span class="s3">0</span><span class="s1">) </span><span class="s0">return new </span><span class="s1">Goblin(</span>
+                <span class="s2">&quot;Гоблин&quot;</span><span class="s0">,</span>
+                <span class="s3">50</span><span class="s0">,</span>
+                <span class="s3">10</span><span class="s0">,</span>
+                <span class="s3">10</span><span class="s0">,</span>
+                <span class="s3">100</span><span class="s0">,</span>
+                <span class="s3">20</span>
+        <span class="s1">)</span><span class="s0">;</span>
+        <span class="s0">else return new </span><span class="s1">Skelet(</span>
+                <span class="s2">&quot;Скелет&quot;</span><span class="s0">,</span>
+                <span class="s3">25</span><span class="s0">,</span>
+                <span class="s3">20</span><span class="s0">,</span>
+                <span class="s3">20</span><span class="s0">,</span>
+                <span class="s3">100</span><span class="s0">,</span>
+                <span class="s3">10</span>
+        <span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s0">public interface </span><span class="s1">FightCallback {</span>
+
+        <span class="s0">void </span><span class="s1">fightWin()</span><span class="s0">;</span>
+        <span class="s0">void </span><span class="s1">fightLost()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s0">private static void </span><span class="s1">printNavigation() {</span>
+        <span class="s1">System.out.println(</span><span class="s2">&quot;Куда вы хотите пойти?&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">System.out.println(</span><span class="s2">&quot;1. К Торговцу&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">System.out.println(</span><span class="s2">&quot;2. В темный лес&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">System.out.println(</span><span class="s2">&quot;3. Выход&quot;</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+<span class="s1">}</span>
+
+
+</pre>
+</body>
+</html>
